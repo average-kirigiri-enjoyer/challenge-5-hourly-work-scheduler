@@ -3,6 +3,20 @@
 // in the html.
 $(document).ready(function()
 {
+  //creates an array including each individual hour block
+  workHours =
+  [
+    hourNine = $("#hour-9"),
+    hourTen = $("#hour-10"),
+    hourEleven = $("#hour-11"),
+    hourTwelve = $("#hour-12"),
+    hourThirteen = $("#hour-13"),
+    hourFourteen = $("#hour-14"),
+    hourFifteen = $("#hour-15"),
+    hourSixteen = $("#hour-16"),
+    hourSixteenSeventeen = $("#hour-17")
+  ]
+  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -18,19 +32,7 @@ $(document).ready(function()
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
 
-  //creates an array including each individual hour block
-  workHours =
-  [
-    hourNine = $("#hour-9"),
-    hourTen = $("#hour-10"),
-    hourEleven = $("#hour-11"),
-    hourTwelve = $("#hour-12"),
-    hourThirteen = $("#hour-13"),
-    hourFourteen = $("#hour-14"),
-    hourFifteen = $("#hour-15"),
-    hourSixteen = $("#hour-16"),
-    hourSixteenSeventeen = $("#hour-17")
-  ]
+  
   
   //converts current hour in 24-hour format to an integer
   var currentHour = parseInt(dayjs().format("HH"))
@@ -45,7 +47,16 @@ $(document).ready(function()
       workHours[hour].addClass("future");
     }
   }
-  else //if it is between and including 9:00 AM and 11:59 PM, colours hour blocks accordingly
+  else if (currentHour > 17) //if it is past between and including 6:00 PM and 11:59 PM, removes present class from 5:00 PM block and assigns all blocks past class
+  {
+    workHours[8].removeClass("present")
+
+    for (hour = 0; hour < workHours.length; hour++)
+    {
+      workHours[hour].addClass("past");
+    }
+  }
+  else //if it is between and including 9:00 AM and 5:59 PM, colours hour blocks accordingly
   {
     //assigns past class and associated styles to all blocks for hours that have passed
     for (hour = 0; hour < currentHour - 9; hour++)
@@ -74,3 +85,5 @@ $(document).ready(function()
   //displays current date just above the hour blocks at the top of the page
   $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY"));
 });
+
+
