@@ -14,7 +14,7 @@ $(document).ready(function()
     hourFourteen = $("#hour-14"),
     hourFifteen = $("#hour-15"),
     hourSixteen = $("#hour-16"),
-    hourSixteenSeventeen = $("#hour-17")
+    hourSeventeen = $("#hour-17")
   ]
   
   // TODO: Add a listener for click events on the save button. This code should
@@ -24,15 +24,18 @@ $(document).ready(function()
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
 
+  //this may be a good start, maybe not; experiment!
+  $("button").on("click", function()
+  {
+    var blockClicked = $(this).siblings("div").text();
+    console.log(blockClicked);
+  });
 
-
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
-
-  
+  //use event delegation to track clicks on all divs
+  //match event target to associated hour block
+  //check if user click on save button
+  //if yes, take first child element of target div (hour indicator), and save text content of first child to local storage
+  //when page loads, render all saved events from local storage
   
   //converts current hour in 24-hour format to an integer
   var currentHour = parseInt(dayjs().format("HH"))
