@@ -24,18 +24,20 @@ $(document).ready(function()
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
 
-  //this may be a good start, maybe not; experiment!
+  //when page loads, render all saved events from local storage
+
+  //sends any applicable event data to local storage when a button is clicked
   $("button").on("click", function()
   {
+    //retrieves the hour title of the block containing the button that was clicked
     var blockClicked = $(this).siblings("div").text();
-    console.log(blockClicked);
-  });
 
-  //use event delegation to track clicks on all divs
-  //match event target to associated hour block
-  //check if user click on save button
-  //if yes, take first child element of target div (hour indicator), and save text content of first child to local storage
-  //when page loads, render all saved events from local storage
+    //retrives any event data within the hour block that was clicked
+    var eventData = $(this).siblings("textarea").val();
+
+    //sends event data to local storage under the same name as blockClicked
+    localStorage.setItem(blockClicked, eventData);
+  });
   
   //converts current hour in 24-hour format to an integer
   var currentHour = parseInt(dayjs().format("HH"))
