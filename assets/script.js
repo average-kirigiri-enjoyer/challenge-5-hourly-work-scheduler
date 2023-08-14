@@ -94,12 +94,6 @@ $(document).ready(function()
     }
   }
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-
-
-
   //displays current date just above the hour blocks at the top of the page
   $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY"));
 });
