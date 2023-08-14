@@ -20,7 +20,7 @@ $(document).ready(function()
     hourFifteen = $("#hour-15"),
     hourSixteen = $("#hour-16"),
     hourSeventeen = $("#hour-17")
-  ]
+  ];
 
   //function to render already-existing event data from local storage
   function loadEvents()
@@ -36,7 +36,7 @@ $(document).ready(function()
     hourSeventeen.children("textarea").val(localStorage.getItem("5PM"));
   }
 
-  //render all saved event data from local storage
+  //renders any existing event data in local storage
   loadEvents();
 
   //sends any applicable event data to local storage when a button is clicked
@@ -48,27 +48,23 @@ $(document).ready(function()
     //retrives any event data within the hour block that was clicked
     var eventData = $(this).siblings("textarea").val();
 
-    //sends event data to local storage under the same name as blockClicked
+    //sends event data to local storage under the same name as the block's hour title
     localStorage.setItem(blockClicked, eventData);
   });
   
   //converts current hour in 24-hour format to an integer
-  var currentHour = parseInt(dayjs().format("HH"))
+  var currentHour = parseInt(dayjs().format("HH"));
 
-  //if it is between and including 12:00 AM and 8:59 AM, all hour blocks are assigned the future class, and cleared of all other hour-based classes
+  //if it is between & including 12:00 AM and 8:59 AM, all hour blocks are assigned the future class
   if (currentHour < 9)
   {
     for (hour = 0; hour < workHours.length; hour++)
     {
-      workHours[hour].removeClass("past")
-      workHours[hour].removeClass("present")
       workHours[hour].addClass("future");
     }
   }
-  else if (currentHour > 17) //if it is past between and including 6:00 PM and 11:59 PM, removes present class from 5:00 PM block and assigns all blocks past class
+  else if (currentHour > 17) //if it is between & including 6:00 PM and 11:59 PM, all hour blocks are assigned the past class
   {
-    workHours[8].removeClass("present")
-
     for (hour = 0; hour < workHours.length; hour++)
     {
       workHours[hour].addClass("past");
@@ -76,32 +72,22 @@ $(document).ready(function()
   }
   else //if it is between and including 9:00 AM and 5:59 PM, colours hour blocks accordingly
   {
-    //assigns past class and associated styles to all blocks for hours that have passed
+    //assigns past class to all blocks for hours that have passed
     for (hour = 0; hour < currentHour - 9; hour++)
     {
-      workHours[hour].removeClass("present")
       workHours[hour].addClass("past");
     }
 
-    //assigns present class and associated styles for current hour block
-    workHours[currentHour - 9].removeClass("future")
+    //assigns present class to current hour block
     workHours[currentHour - 9].addClass("present")
 
-    //assigns future class and associated styles to all blocks for hours that have yet to arrive
+    //assigns future class to all blocks for hours that have yet to arrive
     for (hour = 8; hour > currentHour - 9; hour--)
     {
       workHours[hour].addClass("future");
     }
   }
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-
-
-
   //displays current date just above the hour blocks at the top of the page
   $("#currentDay").text(dayjs().format("dddd, MMMM D, YYYY"));
 });
-
-
