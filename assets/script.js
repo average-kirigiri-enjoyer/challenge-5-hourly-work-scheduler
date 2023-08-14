@@ -1,6 +1,11 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+/*
+ethan (average-kirigiri-enjoyer)
+SCS Boot Camp Module 5 Weekly Challenge - Hourly Work Day Scheduler
+Created 2023/08/09
+Last Edited 2023/08/13
+*/
+
+//waits until document is finished loading before running main code
 $(document).ready(function()
 {
   //creates an array including each individual hour block
@@ -16,15 +21,23 @@ $(document).ready(function()
     hourSixteen = $("#hour-16"),
     hourSeventeen = $("#hour-17")
   ]
-  
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
 
-  //when page loads, render all saved events from local storage
+  //function to render already-existing event data from local storage
+  function loadEvents()
+  {
+    hourNine.children("textarea").val(localStorage.getItem("9AM"));
+    hourTen.children("textarea").val(localStorage.getItem("10AM"));
+    hourEleven.children("textarea").val(localStorage.getItem("11AM"));
+    hourTwelve.children("textarea").val(localStorage.getItem("12PM"));
+    hourThirteen.children("textarea").val(localStorage.getItem("1PM"));
+    hourFourteen.children("textarea").val(localStorage.getItem("2PM"));
+    hourFifteen.children("textarea").val(localStorage.getItem("3PM"));
+    hourSixteen.children("textarea").val(localStorage.getItem("4PM"));
+    hourSeventeen.children("textarea").val(localStorage.getItem("5PM"));
+  }
+
+  //render all saved event data from local storage
+  loadEvents();
 
   //sends any applicable event data to local storage when a button is clicked
   $("button").on("click", function()
