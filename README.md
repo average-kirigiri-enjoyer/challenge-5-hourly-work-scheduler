@@ -8,7 +8,7 @@ Web development has regularly proven itself to be a complex and hectic field to 
 
 Make use of the scheduler here;
 
-https://average-kirigiri-enjoyer.github.io/hourly-work-scheduler/
+https://average-kirigiri-enjoyer.github.io/challenge-5-hourly-work-scheduler/
 
 At the top the page, there will be a header with a title and subtitle followed by today's date.
 
