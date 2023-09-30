@@ -2,7 +2,7 @@
 
 ## Description
 
-Web development has regularly proven itself to be a complex and hectic field to work in, and as such, it is important to keep track of what exactly needs to be done and when. Thus, this web application allows for scheduling "events", whether they be deadlines to complete tasks, notes, or actual events, such as meetings, in an hour-by-hour format for a standard work day.
+Web development has regularly proven itself to be a complex and hectic field to work in, and as such, it is important to keep track of what exactly needs to be done and when. Thus, this web application allows for scheduling "events", whether they be deadlines to complete tasks, notes, or actual events, such as meetings, in an hour-by-hour format for a standard workday.
 
 ## Usage
 
